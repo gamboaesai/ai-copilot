@@ -99,3 +99,16 @@ if os.path.exists(JOURNAL_FILE):
     st.dataframe(journal_df.sort_values(by="Timestamp", ascending=False), use_container_width=True)
 else:
     st.warning("No trades logged yet.")
+
+    import firebase_admin
+from firebase_admin import credentials, firestore
+
+# Load your service account key
+cred = credentials.Certificate("firebase_config.json")
+
+# Initialize Firebase Admin SDK
+firebase_admin.initialize_app(cred)
+
+# Connect to Firestore
+db = firestore.client()
+
