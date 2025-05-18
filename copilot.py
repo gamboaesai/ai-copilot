@@ -100,15 +100,33 @@ if os.path.exists(JOURNAL_FILE):
 else:
     st.warning("No trades logged yet.")
 
-    import firebase_admin
-from firebase_admin import credentials, firestore
+# app.py (or main.py)
 
-# Load your service account key
+import streamlit as st
+from firebase_admin import firestore
+from firebase_admin import credentials
+from firebase_admin import initialize_app
+
+# You can also just import from your separate firebase_admin.py file
+from firebase_admin import firestore
+
+from firebase_admin import credentials
 cred = credentials.Certificate("firebase_config.json")
-
-# Initialize Firebase Admin SDK
-firebase_admin.initialize_app(cred)
-
-# Connect to Firestore
+initialize_app(cred)
 db = firestore.client()
+
+# Example journal save
+def save_journal(user_id, entry):
+    doc_ref = db.collection("journals").document(user_id)
+    doc_ref.set({"entries": firestore.ArrayUnion([entry])}, merge=True)
+
+# Example usage in Streamlit
+st.title("Trade Journal")
+user_id = st.text_input("User ID")
+entry = st.text_area("Enter your journal note")
+
+if st.button("Save"):
+    save_journal(user_id, entry)
+    st.success("Saved to Firebase!")
+
 
