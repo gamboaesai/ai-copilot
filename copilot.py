@@ -104,7 +104,7 @@ else:
 
 import streamlit as st
 from firebase_admin import firestore
-from firebase_admin import credentials
+from firebase_setup import db
 from firebase_admin import initialize_app
 
 # You can also just import from your separate firebase_admin.py file
