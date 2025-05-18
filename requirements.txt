@@ -1,6 +1,6 @@
 streamlit
+firebase-admin
+pyrebase4
+openai
 pandas
-openai
-streamlit
-openai
 
