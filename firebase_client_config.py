@@ -1,5 +1,11 @@
 # firebase_client_config.py
 
+from firebase_admin import credentials, firestore, initialize_app
+
+cred = credentials.Certificate("firebase_config.json")
+initialize_app(cred)
+db = firestore.client()
+
 import pyrebase
 
 firebase_config = {
@@ -14,3 +20,6 @@ firebase_config = {
 
 firebase = pyrebase.initialize_app(firebase_config)
 auth = firebase.auth()
+
+
+
