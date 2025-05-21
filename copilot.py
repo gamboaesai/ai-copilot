@@ -4,6 +4,14 @@ from datetime import datetime
 import openai
 from firebase_admin import firestore
 from firebase_client_config import db  # Ensure this initializes Firebase
+import streamlit as st
+
+# Check if user is logged in
+if "user" not in st.session_state:
+    st.warning("🔐 Please log in to access the Trading Copilot.")
+    st.stop()
+
+user_id = st.session_state.user["localId"]
 
 # === CONFIG ===
 st.set_page_config(page_title="AI Trading Copilot", layout="wide")
