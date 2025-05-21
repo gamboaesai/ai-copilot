@@ -5,6 +5,9 @@ import openai
 from firebase_admin import firestore
 from firebase_client_config import db  # Ensure this initializes Firebase
 import streamlit as st
+def main():
+    # all your existing copilot UI code
+
 
 # Check if user is logged in
 if "user" not in st.session_state:
