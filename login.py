@@ -1,3 +1,25 @@
+import streamlit as st
+from pyrebase_config import auth
+
+def login_user(email, password):
+    try:
+        return auth.sign_in_with_email_and_password(email, password)
+    except Exception as e:
+        st.error(f"Login failed: {e}")
+        return None
+
+def render_login():
+    st.title("🔐 Login")
+
+    email = st.text_input("Email")
+    password = st.text_input("Password", type="password")
+
+    if st.button("Log In"):
+        user = login_user(email, password)
+        if user:
+            st.session_state.user = user
+            st.success("Login successful!")
+            st.rerun()
 # login.py
 
 import streamlit as st
