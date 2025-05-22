@@ -1,14 +1,13 @@
 import streamlit as st
 from signup import render_signup
 from login import render_login
-import copilot  # your main app with `main()` function
+import copilot
 
-# Page config
 st.set_page_config(page_title="AI Trading Copilot", layout="wide")
 
 # Sidebar navigation
 st.sidebar.title("🧭 Navigation")
-page = st.sidebar.radio("Go to:", ["Login", "Sign Up", "Copilot"])
+page = st.sidebar.radio("Choose a Page:", ["Login", "Sign Up", "Copilot"])
 
 # Route logic
 if page == "Login":
